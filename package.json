@@ -1,0 +1,29 @@
+{
+  "name": "sand",
+  "version": "0.0.1",
+  "description": "A framework based on grains (modules)",
+  "main": "lib/Application.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pocketly/sand"
+  },
+  "author": "Kevin Smithson <ksmithson@pocketly.com>",
+  "homepage": "https://github.com/pocketly/sand",
+  "bugs": {
+    "url": "https://github.com/pocketly/sand/issues"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "only": "0.0.2",
+    "sand-extend": "0.0.1",
+    "sand-log": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.0.1",
+    "should": "^4.3.0"
+  }
+}
