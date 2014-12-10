@@ -1,0 +1,1 @@
+require('sand-log').prototype.log = function() {};
