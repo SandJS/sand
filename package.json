@@ -20,7 +20,7 @@
     "lodash": "^2.4.1",
     "only": "0.0.2",
     "sand-extend": "0.0.1",
-    "sand-log": "0.0.1"
+    "sand-log": "0.0.2"
   },
   "devDependencies": {
     "mocha": "^2.0.1",
