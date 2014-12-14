@@ -1,6 +1,4 @@
-SRC = lib/*.js
-
-TESTS = test/application
+TESTS = test/*.js
 
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \

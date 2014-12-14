@@ -1,4 +1,3 @@
-require('./helpers/logger');
 var sand = require('..');
 var path = require('path');
 process.env.SAND_APP_PATH = path.resolve(__dirname + '/../');
