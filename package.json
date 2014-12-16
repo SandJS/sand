@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "A framework based on grains (modules)",
   "main": "lib/Application.js",
   "scripts": {
