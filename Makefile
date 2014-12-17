@@ -1,10 +1,9 @@
-TESTS = test/*.js
+TESTS = test/**/*.test.js
 
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 		--require should \
-		--harmony-generators \
 		$(TESTS) \
-		--bail
+		--recursive \
 
 .PHONY: test

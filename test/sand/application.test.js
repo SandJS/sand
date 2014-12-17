@@ -1,6 +1,5 @@
-var sand = require('..');
+var sand = require('../../');
 var path = require('path');
-var BadGrain = require('./helpers/BadGrain');
 var child = require('child_process');
 
 process.env.SAND_APP_PATH = path.resolve(__dirname + '/../');
@@ -8,19 +7,26 @@ process.env.SAND_APP_PATH = path.resolve(__dirname + '/../');
 describe('Events', function() {
   "use strict";
   it ('should emit start event', function(done) {
-    sand().on('start', done).start();
+    child.fork('test/sand/helpers/testStartEvent')
+      .on('exit', function(code) {
+        code.should.be.eql(2);
+        done();
+      });
   });
 
   it ('should emit shutdown event', function(done) {
-    var app = sand().on('shutdown', done).start();
-    app.shutdown();
+    child.fork('test/sand/helpers/testShutdownEvent')
+      .on('exit', function(code) {
+        code.should.be.eql(3);
+        done();
+      });
   });
 });
 
 describe('Application', function() {
   "use strict";
   it('should kill init after bad module', function(done) {
-    child.fork('test/helpers/testInitTimeout')
+    child.fork('test/sand/helpers/testInitTimeout')
       .on('exit', function(code) {
         code.should.be.eql(1);
         done();
@@ -28,7 +34,7 @@ describe('Application', function() {
   });
 
   it('should kill shutdown after timeout', function(done) {
-    child.fork('test/helpers/testShutdownTimeout')
+    child.fork('test/sand/helpers/testShutdownTimeout')
       .on('exit', function(code) {
         code.should.be.eql(1);
         done();

@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A framework based on grains (modules)",
   "main": "lib/Application.js",
   "scripts": {
@@ -19,7 +19,6 @@
   "dependencies": {
     "lodash": "^2.4.1",
     "only": "0.0.2",
-    "sand-extend": "0.0.4",
     "winston": "^0.8.3"
   },
   "devDependencies": {

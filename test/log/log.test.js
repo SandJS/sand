@@ -1,4 +1,4 @@
-var Logger = require("../lib/Logger");
+var Logger = require("../../lib/log/Logger");
 describe("log", function() {
   it ('should add namespace', function() {
     //global.SandLog.loggers.length.should.equal(0);
