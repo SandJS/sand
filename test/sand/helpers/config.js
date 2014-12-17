@@ -1,3 +1,4 @@
 module.exports = {
-  env: 'mine'
+  env: 'mine',
+  log: "*"
 };

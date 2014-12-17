@@ -63,6 +63,14 @@ describe('Config', function() {
 
     app.env.should.be.equal('mine')
   });
+
+  it('should load log level correctly', function() {
+    var app = sand({
+      configPath: path.resolve(__dirname + '/helpers/config.js')
+    });
+
+    app.config.log.should.be.eql('*');
+  });
 });
 
 describe('app.inspect()', function(){
