@@ -53,7 +53,7 @@ describe('Config', function() {
       env: 'mine'
     });
 
-    app.env.should.be.equal('mine');
+    app.config.env.should.be.equal('mine');
   });
 
   it('should load from file', function() {
@@ -61,7 +61,7 @@ describe('Config', function() {
       configPath: path.resolve(__dirname + '/helpers/config.js')
     });
 
-    app.env.should.be.equal('mine')
+    app.config.env.should.be.equal('mine')
   });
 
   it('should load log level correctly', function() {
@@ -69,7 +69,7 @@ describe('Config', function() {
       configPath: path.resolve(__dirname + '/helpers/config.js')
     });
 
-    app.config.log.should.be.eql('*');
+    app.config.log.should.be.eql('unknown');
   });
 });
 

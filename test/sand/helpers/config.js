@@ -1,4 +1,6 @@
 module.exports = {
-  env: 'mine',
-  log: "*"
+  "test": {
+    env: 'mine',
+    log: "unknown"
+  }
 };
