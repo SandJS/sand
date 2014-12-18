@@ -45,7 +45,9 @@ describe('Application', function() {
 describe('Config', function() {
   "use strict";
   it ('should set defaults', function() {
-    sand().env.should.be.equal('test');
+    var app = sand();
+    app.env.should.be.equal('test');
+    app.config.initTimeout.should.be.a.Number;
   });
 
   it ('should use passed in config', function() {
