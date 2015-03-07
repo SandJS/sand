@@ -21,8 +21,7 @@
     "lodash": "^2.4.1",
     "moment": "^2.9.0",
     "only": "0.0.2",
-    "winston": "^0.8.3",
-    "sand-grain": "git+https://github.com/pocketly/sand-grain.git#es6"
+    "winston": "^0.8.3"
   },
   "devDependencies": {
     "mocha": "^2.0.1",
