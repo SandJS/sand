@@ -40,6 +40,49 @@ describe('Application', function() {
         done();
       });
   });
+
+  it ('should listen to shutdown event', function(done) {
+    let c = child.fork('test/sand/helpers/testSignalEvents')
+      .on('exit', function(code) {
+        code.should.be.eql(4);
+        done();
+      });
+
+    c.send('shutdown');
+  });
+
+  let signals = ['SIGTERM', 'SIGINT'];
+
+  for (let signal of signals) {
+    it(`should listen to ${signal} event`, function (done) {
+      let c = child.fork('test/sand/helpers/testSignalEvents')
+        .on('exit', function (code, signal) {
+          code.should.be.eql(4);
+          done();
+        });
+
+      // Make sure sand started and bound to event
+      setTimeout(function () {
+        c.kill(signal);
+      }, 200);
+    });
+  }
+
+  for (let signal of signals) {
+    it(`should listen to ${signal} events from node-pm`, function (done) {
+      let c = child.spawn(path.normalize(__dirname + '/../../node_modules/node-pm/bin/node-pm'), [path.normalize(__dirname + '/helpers/testSignalEvents.js')])
+        .on('exit', function (code, signal) {
+          code.should.be.eql(0);
+          done();
+        });
+
+      // Make sure sand started and bound to event
+      setTimeout(function () {
+        c.kill(signal);
+      }, 200);
+    });
+  }
+
 });
 
 describe('Config', function() {
