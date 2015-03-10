@@ -1,6 +1,6 @@
 var sand = require('../../..');
 
-sand()
+new sand()
   .on('start', function() {
     "use strict";
     process.exit(2);

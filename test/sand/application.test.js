@@ -88,13 +88,13 @@ describe('Application', function() {
 describe('Config', function() {
   "use strict";
   it ('should set defaults', function() {
-    var app = sand();
+    var app = new sand();
     app.env.should.be.equal('test');
     app.config.initTimeout.should.be.a.Number;
   });
 
   it ('should use passed in config', function() {
-    var app = sand({
+    var app = new sand({
       env: 'mine'
     });
 
@@ -102,7 +102,7 @@ describe('Config', function() {
   });
 
   it('should load from file', function() {
-    var app = sand({
+    var app = new sand({
       configPath: path.resolve(__dirname + '/helpers/config.js')
     });
 
@@ -110,7 +110,7 @@ describe('Config', function() {
   });
 
   it('should load log level correctly', function() {
-    var app = sand({
+    var app = new sand({
       configPath: path.resolve(__dirname + '/helpers/config.js')
     });
 
@@ -120,7 +120,7 @@ describe('Config', function() {
 
 describe('app.inspect()', function(){
   it('should work', function(){
-    var app = sand();
+    var app = new sand();
     var util = require('util');
     util.inspect(app);
   });
