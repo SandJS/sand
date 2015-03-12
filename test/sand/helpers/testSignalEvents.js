@@ -3,8 +3,8 @@ var sand = require('../../..');
 new sand()
   .on('shutdown', function() {
     "use strict";
-    process.exit(3);
-  }).start().shutdown();
+    process.exit(4);
+  }).start();
 
 // Keep process alive
 setTimeout(function(){}, 10000);

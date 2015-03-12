@@ -1,7 +1,7 @@
 var sand = require('../../..');
 var BadGrain = require('./BadGrain');
 
-sand({
+new sand({
   initTimeout: 100
 }).use(BadGrain, {
   testInit: true
