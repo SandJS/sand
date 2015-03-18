@@ -2,7 +2,7 @@ var Logger = require("../../lib/log/Logger");
 describe("log", function() {
   it ('should add namespace', function() {
     //global.SandLog.loggers.length.should.equal(0);
-    global.SandLog.loggers.should.not.have.property('test')
+    global.SandLog.loggers.should.not.have.property('test');
     var log = new Logger('test').log;
     global.SandLog.loggers.should.have.property('test');
   });
