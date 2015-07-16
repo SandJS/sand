@@ -1,6 +1,6 @@
 {
   "name": "sand",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A framework based on grains (modules)",
   "main": "lib/Application.js",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pocketly/sand"
+    "url": "https://github.com/SandJS/sand.git"
   },
   "author": "Kevin Smithson <ksmithson@pocketly.com>",
-  "homepage": "https://github.com/pocketly/sand",
+  "homepage": "https://github.com/SandJS/sand.git",
   "bugs": {
-    "url": "https://github.com/pocketly/sand/issues"
+    "url": "https://github.com/SandJS/sand/issues"
   },
   "license": "ISC",
   "dependencies": {
