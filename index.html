@@ -98,6 +98,14 @@
         
             <li><a href="#why-sand">Why Sand?</a></li>
         
+            <li><a href="#requirements">Requirements</a></li>
+        
+            <li><a href="#show-me-the-code">Show me the code!</a></li>
+        
+            <li><a href="#miscellaneous-resources-gotchas-regarding-ecmascript-6">Miscellaneous Resources &amp; Gotchas regarding EcmaScript 6</a></li>
+        
+            <li><a href="#getting-started">Getting Started</a></li>
+        
     
     </ul>
 </div></div>
@@ -110,50 +118,45 @@
 <p>In 3 words, <strong>Sand is simple</strong>.</p>
 <p>You can create <strong>ANY</strong> kind of Node.js application, script, or service using Sand.</p>
 <p>The simplest Sand application is shown below.</p>
-<p>```Node.js
-var Sand = require('sand');
+<pre><code class="JavaScript">var Sand = require('sand');
 new Sand().start(function () {
   console.log('Hello, World!');
-});</p>
-<pre><code>
-Yet, Sand can do a lot more than this.
+});
+</code></pre>
 
-### Requirements
-Currently, Sand is developed on [io.js](https://iojs.org/) using EcmaScript 6. So far, Sand has not been extensively tested on Node.js v0.12, but we expect that it will work there too.
-
-### Show me the code!
-See the [examples repository](https://github.com/SandJS/examples).
-
-### Miscellaneous Resources &amp; Gotchas regarding EcmaScript 6
-* For a brief description of EcmaScript 6 Features, see [here](https://github.com/lukehoban/es6features).
-* For more information on ES6 in io.js, see [here](https://iojs.org/en/es6.html).
-* You will notice that many of the source files of Sand require `&quot;use strict&quot;` for compatibility with certain recently added keywords such as `let`, `const`, `class` and others.
-
-### Getting Started
-Sand has two components. The Sand core and the Sand Grain. These two components are tied together by the application lifecycle.
-
-#### Sand Core &amp; Application Lifecycle
-The core of every Sand application is the [sand](https://www.npmjs.com/package/sand) module.
-
-Sand was built to orchestrate an application's **intitialization**, **startup**, and **shutdown**. These are the three phases in the Sand application lifecycle.
-
-1. The **Initialization** phase loads configuration and prepares the application to receive requests. The function `Sand#init(function() { // ... })` allows you to initialize or preload any resources your app requires before starting.
-
-2. The **Startup** phase starts the application. The `start` event will be fired on application startup. The function `Sand#start(function() { // ... })` starts the application and accepts an optional callback function as an argument. Note that the callback function is called **after** the application starts.
-
-3. The **Shutdown** phase gracefully closes down the application. The `shutdown` event will be fired on application shutdown.
-
-Every application has access to the `sand` global variable which holds references to all the grains that your app has loaded.
-
-#### Sand Grains
-A Sand Grain is small piece of functionality required by an application. It is usually a client or library wrapper that autoloads its own configuration and provides convenience functions.
-
-Sand grains have the same three events as the app lifecycle. The Sand core calls the `SandGrain#init` and `SandGrain#shutdown` methods on each sand grain.
-
-A basic sand grain looks like this.
-
-```Node.js
-&quot;use strict&quot;;
+<p>Yet, Sand can do a lot more than this.</p>
+<h3 id="requirements">Requirements</h3>
+<p>Currently, Sand is developed on <a href="https://iojs.org/">io.js</a> using EcmaScript 6. So far, Sand has not been extensively tested on Node.js v0.12, but we expect that it will work there too.</p>
+<h3 id="show-me-the-code">Show me the code!</h3>
+<p>See the <a href="https://github.com/SandJS/examples">examples repository</a>.</p>
+<h3 id="miscellaneous-resources-gotchas-regarding-ecmascript-6">Miscellaneous Resources &amp; Gotchas regarding EcmaScript 6</h3>
+<ul>
+<li>For a brief description of EcmaScript 6 Features, see <a href="https://github.com/lukehoban/es6features">here</a>.</li>
+<li>For more information on ES6 in io.js, see <a href="https://iojs.org/en/es6.html">here</a>.</li>
+<li>You will notice that many of the source files of Sand require <code>"use strict"</code> for compatibility with certain recently added keywords such as <code>let</code>, <code>const</code>, <code>class</code> and others.</li>
+</ul>
+<h3 id="getting-started">Getting Started</h3>
+<p>Sand has two components. The Sand core and the Sand Grain. These two components are tied together by the application lifecycle.</p>
+<h4 id="sand-core-application-lifecycle">Sand Core &amp; Application Lifecycle</h4>
+<p>The core of every Sand application is the <a href="https://www.npmjs.com/package/sand">sand</a> module.</p>
+<p>Sand was built to orchestrate an application's <strong>intitialization</strong>, <strong>startup</strong>, and <strong>shutdown</strong>. These are the three phases in the Sand application lifecycle.</p>
+<ol>
+<li>
+<p>The <strong>Initialization</strong> phase loads configuration and prepares the application to receive requests. The function <code>Sand#init(function() { // ... })</code> allows you to initialize or preload any resources your app requires before starting.</p>
+</li>
+<li>
+<p>The <strong>Startup</strong> phase starts the application. The <code>start</code> event will be fired on application startup. The function <code>Sand#start(function() { // ... })</code> starts the application and accepts an optional callback function as an argument. Note that the callback function is called <strong>after</strong> the application starts.</p>
+</li>
+<li>
+<p>The <strong>Shutdown</strong> phase gracefully closes down the application. The <code>shutdown</code> event will be fired on application shutdown.</p>
+</li>
+</ol>
+<p>Every application has access to the <code>sand</code> global variable which holds references to all the grains that your app has loaded.</p>
+<h4 id="sand-grains">Sand Grains</h4>
+<p>A Sand Grain is small piece of functionality required by an application. It is usually a client or library wrapper that autoloads its own configuration and provides convenience functions.</p>
+<p>Sand grains have the same three events as the app lifecycle. The Sand core calls the <code>SandGrain#init</code> and <code>SandGrain#shutdown</code> methods on each sand grain.</p>
+<p>A basic sand grain looks like this.</p>
+<pre><code class="JavaScript">&quot;use strict&quot;;
 
 const SandGrain = require('sand-grain');
 
