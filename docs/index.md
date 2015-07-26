@@ -10,7 +10,7 @@ You can create **ANY** kind of Node.js application, script, or service using San
 
 The simplest Sand application is shown below.
 
-```Node.js
+```JavaScript
 var Sand = require('sand');
 new Sand().start(function () {
   console.log('Hello, World!');
@@ -53,7 +53,7 @@ Sand grains have the same three events as the app lifecycle. The Sand core calls
 
 A basic sand grain looks like this.
 
-```Node.js
+```JavaScript
 "use strict";
 
 const SandGrain = require('sand-grain');
