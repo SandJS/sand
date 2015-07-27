@@ -72,14 +72,13 @@
 
             <!-- Search, Navigation and Repo links -->
             <ul class="nav navbar-nav navbar-right">
-                <li class="disabled">
-                    <a rel="next" >
-                        <i class="fa fa-arrow-left"></i> Previous
-                    </a>
-                </li>
-                <li >
-                    <a rel="prev" href="Grains/http/">
-                        Next <i class="fa fa-arrow-right"></i>
+                
+                <li>
+                    <a href="https://github.com/SandJS/sand">
+                        
+                            <i class="fa fa-github"></i>
+                        
+                        GitHub
                     </a>
                 </li>
                 
@@ -97,6 +96,8 @@
             <li><a href="#what-is-sand">What is Sand?</a></li>
         
             <li><a href="#why-sand">Why Sand?</a></li>
+        
+            <li><a href="#whos-using-sand">Who's using Sand?</a></li>
         
             <li><a href="#requirements">Requirements</a></li>
         
@@ -124,7 +125,10 @@ new Sand().start(function () {
 });
 </code></pre>
 
-<p>Yet, Sand can do a lot more than this.</p>
+<p>Sand comes with many pre-built plugins supporting <a href="https://github.com/pocketly/sand-mysql">MySQL</a>, <a href="https://github.com/SandJS/elasticsearch">ElasticSearch</a>, <a href="https://github.com/pocketly/sand-memcache">Memcache</a>, <a href="https://github.com/SandJS/redis">Redis</a>, <a href="https://github.com/SandJS/riak">Riak</a>, <a href="https://github.com/SandJS/session">Sessions</a>, and <a href="https://github.com/SandJS">many</a> <a href="https://github.com/pocketly">more</a>.</p>
+<h3 id="whos-using-sand">Who's using Sand?</h3>
+<p><a href="http://pocketly.com">Pocketly</a></p>
+<p><a href="https://getwhym.com">Whym</a></p>
 <h3 id="requirements">Requirements</h3>
 <p>Currently, Sand is developed on <a href="https://iojs.org/">io.js</a> using EcmaScript 6. So far, Sand has not been extensively tested on Node.js v0.12, but we expect that it will work there too.</p>
 <h3 id="show-me-the-code">Show me the code!</h3>
@@ -195,7 +199,8 @@ class Cheese extends SandGrain {
 module.exports = Cheese;
 </code></pre>
 
-<p>Every Sand Grain gets loaded onto the <code>sand</code> global variable on initialization.</p></div>
+<p>Every Sand Grain gets loaded onto the <code>sand</code> global variable on initialization.</p>
+<p>Import any sand Grain into your application using the <code>Sand#use</code> function before you call <code>Sand#start</code>.</p></div>
         </div>
 
         <footer class="col-md-12">
