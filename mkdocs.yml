@@ -1,2 +1,4 @@
 site_name: Sand JS
-theme: slate
+theme_dir: 'docs_theme'
+repo_url: 'https://github.com/SandJS/sand'
+repo_name: 'GitHub'
