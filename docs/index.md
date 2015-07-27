@@ -17,7 +17,12 @@ new Sand().start(function () {
 });
 ```
 
-Yet, Sand can do a lot more than this.
+Sand comes with many pre-built plugins supporting [MySQL](https://github.com/pocketly/sand-mysql), [ElasticSearch](https://github.com/SandJS/elasticsearch), [Memcache](https://github.com/pocketly/sand-memcache), [Redis](https://github.com/SandJS/redis), [Riak](https://github.com/SandJS/riak), [Sessions](https://github.com/SandJS/session), and [many](https://github.com/SandJS) [more](https://github.com/pocketly).
+
+### Who's using Sand?
+[Pocketly](http://pocketly.com)
+
+[Whym](https://getwhym.com)
 
 ### Requirements
 Currently, Sand is developed on [io.js](https://iojs.org/) using EcmaScript 6. So far, Sand has not been extensively tested on Node.js v0.12, but we expect that it will work there too.
@@ -94,3 +99,5 @@ module.exports = Cheese;
 ```
 
 Every Sand Grain gets loaded onto the `sand` global variable on initialization.
+
+Import any sand Grain into your application using the `Sand#use` function before you call `Sand#start`.
