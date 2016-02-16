@@ -1,3 +1,5 @@
+"use strict";
+
 var sand = require('../../');
 var path = require('path');
 var child = require('child_process');
@@ -125,3 +127,77 @@ describe('app.inspect()', function(){
     util.inspect(app);
   });
 });
+
+describe('Context', () => {
+  let app = new sand({
+    configPath: path.resolve(__dirname + '/helpers/config.js')
+  });
+
+  it ('should run in separate context', () => {
+    app.ctx.test = 1;
+    app.ctx.test.should.be.eql(1);
+
+    app.runInContext(() => {
+      global.sand.ctx.test = 2;
+      global.sand.ctx.test.should.be.eql(2);
+    });
+
+    app.ctx.test.should.be.eql(1);
+  });
+
+  it ('should enter and exit new context with autoEnter', () => {
+    app.ctx.test = 1;
+    app.ctx.test.should.be.eql(1);
+
+    let ctx = app.newContext();
+    global.sand.ctx.test = 2;
+    global.sand.ctx.test.should.be.eql(2);
+    ctx.exit();
+
+    app.ctx.test.should.be.eql(1);
+  });
+
+  it ('should enter and exit new context manually', () => {
+    app.ctx.test = 1;
+    app.ctx.test.should.be.eql(1);
+
+    let ctx = app.newContext(false);
+    ctx.enter();
+    global.sand.ctx.test = 2;
+    global.sand.ctx.test.should.be.eql(2);
+    ctx.exit();
+
+    app.ctx.test.should.be.eql(1);
+  });
+
+  it ('should enter and exit new Custom context', () => {
+    app.ctx.test = 1;
+    app.ctx.test.should.be.eql(1);
+
+    let ctx = app.newContext(CustomContext);
+    global.sand.ctx.should.be.instanceOf(CustomContext);
+    global.sand.ctx.test = 2;
+    global.sand.ctx.test.should.be.eql(2);
+    ctx.exit();
+
+    app.ctx.test.should.be.eql(1);
+  });
+
+  it ('should run in separate context', () => {
+    app.ctx.test = 1;
+    app.ctx.test.should.be.eql(1);
+
+    app.runInContext(CustomContext, () => {
+      global.sand.ctx.should.be.instanceOf(CustomContext);
+      global.sand.ctx.test = 2;
+      global.sand.ctx.test.should.be.eql(2);
+    });
+
+    app.ctx.test.should.be.eql(1);
+  });
+
+});
+
+class CustomContext extends require('../../lib/Context') {
+
+}
