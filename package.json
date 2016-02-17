@@ -17,7 +17,8 @@
   },
   "license": "ISC",
   "dependencies": {
-    "co": "^4.6.0",
+    "co": "git+https://github.com/sazze/co.git#master",
+    "co-bind": "^1.0.0",
     "colors": "^1.0.3",
     "debug": "^2.2.0",
     "lodash": "^3.5.0",

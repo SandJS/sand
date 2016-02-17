@@ -128,18 +128,19 @@ describe('app.inspect()', function(){
   });
 });
 
-describe('Context', () => {
+describe.only('Context', () => {
   let app = new sand({
     configPath: path.resolve(__dirname + '/helpers/config.js')
   });
 
-  it ('should run in separate context', () => {
+  it ('should run in separate context', (done) => {
     app.ctx.test = 1;
     app.ctx.test.should.be.eql(1);
 
     app.runInContext(() => {
       global.sand.ctx.test = 2;
       global.sand.ctx.test.should.be.eql(2);
+      done();
     });
 
     app.ctx.test.should.be.eql(1);
@@ -183,17 +184,56 @@ describe('Context', () => {
     app.ctx.test.should.be.eql(1);
   });
 
-  it ('should run in separate context', () => {
+  it ('should run in separate context', (done) => {
     app.ctx.test = 1;
     app.ctx.test.should.be.eql(1);
 
-    app.runInContext(CustomContext, () => {
+    app.runInContext(CustomContext, (close) => {
       global.sand.ctx.should.be.instanceOf(CustomContext);
       global.sand.ctx.test = 2;
       global.sand.ctx.test.should.be.eql(2);
+      setTimeout(() => { close(); done()}, 300);
     });
 
     app.ctx.test.should.be.eql(1);
+  });
+
+  it ('should run in separate context with generator', (done) => {
+    global.sand.ctx.test = 1;
+    global.sand.ctx.test.should.be.eql(1);
+
+    global.sand.runInContext(function *() {
+      global.sand.ctx.test = 2;
+      yield new Promise((resolve) => {
+        process.nextTick(() => {
+          setTimeout(() => {
+            global.sand.ctx.test.should.be.eql(2);
+            resolve();
+            done();
+          }, 200);
+        });
+      });
+    });
+
+    global.sand.ctx.test.should.be.eql(1);
+  });
+
+  describe('Events', () => {
+    it ('should emit exit event', (done) => {
+      let ctx = app.newContext(false);
+      ctx.on('exit', done);
+      ctx.enter();
+      ctx.exit();
+    });
+
+    it ('should emit enter event', (done) => {
+      let ctx = app.newContext(false);
+      let c = 0;
+      ctx.on('exit', () => { c.should.be.eql(1); done()});
+      ctx.on('enter', () => {c++});
+      ctx.enter();
+      ctx.exit();
+    });
   });
 
 });
