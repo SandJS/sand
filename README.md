@@ -1,4 +1,5 @@
 # Sand.js
+[![Build Status](https://travis-ci.org/SandJS/sand.svg?branch=master)](https://travis-ci.org/SandJS/sand)
 
 Sand is a lightweight, all-purpose Javascript application framework. Sand provides a simple, yet robust, application lifecycle and many pluggable clients and libraries.
 
