@@ -74,23 +74,25 @@ describe('Application', function() {
     });
   }
 
-  for (let signal of signals) {
-    it(`should listen to ${signal} events from node-pm`, function (done) {
-      let c = child.spawn(path.normalize(__dirname + '/../../node_modules/node-pm/bin/node-pm'), [path.normalize(__dirname + '/helpers/testSignalEvents.js'), '--', '--log'])
-        .on('exit', function (code, signal) {
-          code.should.be.eql(0);
-          done();
-        });
+  if (!process.env.TRAVIS) {
+    for (let signal of signals) {
+      it(`should listen to ${signal} events from node-pm`, function (done) {
+        let c = child.spawn(path.normalize(__dirname + '/../../node_modules/node-pm/bin/node-pm'), [path.normalize(__dirname + '/helpers/testSignalEvents.js'), '--', '--log'])
+          .on('exit', function (code, signal) {
+            code.should.be.eql(0);
+            done();
+          });
 
-      c.stdout.once('data', function (data) {
-        if (data.toString().trim() == 'sand started') {
-          // Make sure sand started and bound to event
-          setTimeout(function () {
-            c.kill(signal);
-          }, 200);
-        }
+        c.stdout.once('data', function (data) {
+          if (data.toString().trim() == 'sand started') {
+            // Make sure sand started and bound to event
+            setTimeout(function () {
+              c.kill(signal);
+            }, 200);
+          }
+        });
       });
-    });
+    }
   }
 
 });
