@@ -81,7 +81,7 @@ describe('Application', function() {
       // Make sure sand started and bound to event
       setTimeout(function () {
         c.kill(signal);
-      }, 200);
+      }, 500);  // some environments (travis) need some extra time for node-pm to startup
     });
   }
 
@@ -117,6 +117,16 @@ describe('Config', function() {
     });
 
     app.config.log.should.be.eql('unknown');
+  });
+
+  it('should load config from environment variable', function () {
+    process.env.SAND_CONFIG_PATH = path.resolve(__dirname + '/helpers/config.js');
+
+    var app = new sand();
+
+    delete process.env.SAND_CONFIG_PATH;
+
+    app.config.env.should.be.equal('mine');
   });
 });
 
