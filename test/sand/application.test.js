@@ -25,7 +25,7 @@ describe('Events', function() {
   });
 });
 
-describe.only('Application', function() {
+describe('Application', function() {
   "use strict";
   it('should kill init after bad module', function(done) {
     child.fork('test/sand/helpers/testInitTimeout')
