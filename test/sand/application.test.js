@@ -25,7 +25,7 @@ describe('Events', function() {
   });
 });
 
-describe('Application', function() {
+describe.only('Application', function() {
   "use strict";
   it('should kill init after bad module', function(done) {
     child.fork('test/sand/helpers/testInitTimeout')
@@ -63,25 +63,33 @@ describe('Application', function() {
           done();
         });
 
-      // Make sure sand started and bound to event
-      setTimeout(function () {
-        c.kill(signal);
-      }, 200);
+      c.on('message', function (data) {
+        if (data == 'sand started') {
+          // Make sure sand started and bound to event
+          setTimeout(function () {
+            c.kill(signal);
+          }, 200);
+        }
+      });
     });
   }
 
   for (let signal of signals) {
     it(`should listen to ${signal} events from node-pm`, function (done) {
-      let c = child.spawn(path.normalize(__dirname + '/../../node_modules/node-pm/bin/node-pm'), [path.normalize(__dirname + '/helpers/testSignalEvents.js')])
+      let c = child.spawn(path.normalize(__dirname + '/../../node_modules/node-pm/bin/node-pm'), [path.normalize(__dirname + '/helpers/testSignalEvents.js'), '--', '--log'])
         .on('exit', function (code, signal) {
           code.should.be.eql(0);
           done();
         });
 
-      // Make sure sand started and bound to event
-      setTimeout(function () {
-        c.kill(signal);
-      }, 500);  // some environments (travis) need some extra time for node-pm to startup
+      c.stdout.once('data', function (data) {
+        if (data.toString().trim() == 'sand started') {
+          // Make sure sand started and bound to event
+          setTimeout(function () {
+            c.kill(signal);
+          }, 200);
+        }
+      });
     });
   }
 
