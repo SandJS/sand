@@ -128,7 +128,7 @@ describe('app.inspect()', function(){
   });
 });
 
-describe.only('Context', () => {
+describe('Context', () => {
   let app = new sand({
     configPath: path.resolve(__dirname + '/helpers/config.js')
   });
